@@ -7,11 +7,11 @@ def round_scores(student_scores):
     :param student_scores: list - float or int of student exam scores.
     :return: list - student scores *rounded* to nearest integer value.
     """
-    list1=[] 
+    rounded_scores=[] 
     while student_scores:
         temp=round(student_scores.pop())
-        list1.append(temp)
-    return list1
+        rounded_scores.append(temp)
+    return rounded_scores 
 
 def count_failed_students(student_scores):
     """Count the number of failing students out of the group provided.
@@ -29,12 +29,8 @@ def above_threshold(student_scores, threshold):
     :param threshold: int - threshold to cross to be the "best" score.
     :return: list - of integer scores that are at or above the "best" threshold.
     """
-    threshold_list=[]
-    for item in student_scores:
-        if item >= threshold:
-            threshold_list.append(item) 
-    return threshold_list
-
+    return [score for score in student_scores if score >= threshold]
+    
 
 def letter_grades(highest):
     """Create a list of grade thresholds based on the provided highest grade.
@@ -49,13 +45,8 @@ def letter_grades(highest):
             71 <= "B" <= 85
             86 <= "A" <= 100
     """
-    delta=(highest-40)/4
-    list1=[]
-    list1.append(41)
-    for i in range(3):
-        temp=round(list1[i]+delta)
-        list1.append(temp)
-    return list1
+    delta=(highest-40)//4
+    return [41+delta*i for i in range(4)]
     
 
 
@@ -68,7 +59,7 @@ def student_ranking(student_scores, student_names):
     """
     rank=[]
     for index,item in enumerate(student_names):
-        rank.append(f"{index+1}. {student_names[index]}: {student_scores[index]}")
+        rank.append(f"{index+1}. {item}: {student_scores[index]}")
     return rank
 
 
