@@ -66,15 +66,10 @@ def student_ranking(student_scores, student_names):
     :param student_names: list - of string names by exam score in descending order.
     :return: list - of strings in format ["<rank>. <student name>: <score>"].
     """
+    rank=[]
+    for index,item in enumerate(student_names):
+        rank.append(f"{index+1}. {student_names[index]}: {student_scores[index]}")
+    return rank
 
-    pass
 
 
-def perfect_score(student_info):
-    """Create a list that contains the name and grade of the first student to make a perfect score on the exam.
-
-    :param student_info: list - of [<student name>, <score>] lists.
-    :return: list - first `[<student name>, 100]` or `[]` if no student score of 100 is found.
-    """
-
-    pass
