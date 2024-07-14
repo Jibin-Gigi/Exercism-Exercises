@@ -11,6 +11,7 @@ def add_item(current_cart, items_to_add):
 
     for item in items_to_add:
         current_cart[item] = current_cart.setdefault(item, 0) + 1
+        
     return current_cart
 
 
@@ -32,8 +33,7 @@ def update_recipes(ideas, recipe_updates):
     :return: dict - updated "recipe ideas" dict.
     """
 
-    for recipe_name, ingredients in recipe_updates:
-        ideas[recipe_name] = ingredients
+    ideas.update(recipe_updates)
     return ideas
 
 
@@ -77,5 +77,10 @@ def update_store_inventory(fulfillment_cart, store_inventory):
     :return: dict - store_inventory updated.
     """
 
+    for key in fulfillment_cart:
+        order = fulfillment_cart[key][0]
+        store_inventory[key][0] -= order
+        if store_inventory[key][0] <= 0:
+            store_inventory[key][0] = 'Out of Stock'
     
-        
+    return store_inventory
