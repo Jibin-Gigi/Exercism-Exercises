@@ -62,8 +62,8 @@ export function remainingOrders(timeLeft, orders) {
   let i = 0;
   do {
     timeLeft -= timeToMixJuice(orders[i]);
-    i++;
+    orders.shift();
   } while (timeLeft > 0);
 
-  return orders.slice(i);
+  return orders;
 }
