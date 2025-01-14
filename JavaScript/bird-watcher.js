@@ -27,7 +27,8 @@ export function totalBirdCount(birdsPerDay) {
  */
 export function birdsInWeek(birdsPerDay, week) {
   let sum = 0;
-  for(let i = (week - 1) * 7; i < week * 7; i++){
+  let startOfWeek = (week - 1) * 7;
+  for(let i = startOfWeek; i < startOfWeek + 7; i++){
     sum += birdsPerDay[i];
   }
   return sum;
