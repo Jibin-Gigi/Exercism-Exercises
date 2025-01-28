@@ -58,5 +58,5 @@ export function deleteTrack(playlist, track) {
  * @returns {string[]} list of artists
  */
 export function listArtists(playlist) {
-  return Array.from(new Set(playlist.map(track => track.split(' - ').pop())));
+  return removeDuplicates(playlist.map(track => track.split(' - ').pop()));
 }
